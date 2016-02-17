@@ -1,10 +1,14 @@
 ## node-zk-browser
 
-[node-zk-browser](https://github.com/killme2008/node-zk-browser) 的java1.8版本
+[node-zk-browser](https://github.com/killme2008/node-zk-browser) 的java版本
+
+## Requirement
+
+* jdk1.8+
 
 ##  Build
 
-mvn clean package -Ptar
+	mvn clean package -Ptar
 
 ## Configure
 
@@ -25,7 +29,7 @@ Type command to start app
 
 You can visit node-zk now at
 
-        http://localhost:9000
+        http://localhost:3000
 
 ## Lisense
 
