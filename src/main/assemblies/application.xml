@@ -1,0 +1,52 @@
+<assembly>
+	<id>${dist.name}</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}/</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>*.sh</include>
+			</includes>
+			<fileMode>0755</fileMode>
+			<lineEnding>unix</lineEnding>
+		</fileSet>
+        <fileSet>
+            <directory>${basedir}/</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>public/**</include>
+                <include>views/**</include>
+                <include>logs</include>
+            </includes>
+        </fileSet>
+		<fileSet>
+			<directory>${basedir}/target/classes</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<includes>
+				<include>*.yaml</include>
+				<include>*.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/target</directory>
+			<outputDirectory>/lib/core</outputDirectory>
+			<includes>
+				<include>${project.build.finalName}.jar
+				</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>/lib/common</outputDirectory>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+
+</assembly>

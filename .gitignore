@@ -1,2 +1,6 @@
 logs/
 node_modules/
+
+.idea
+target
+node-zk-browser.iml

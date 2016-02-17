@@ -29,7 +29,7 @@
 
             var editing=false;
             function edit(){
-               <% if(user) { %>
+               <% if(!isEmpty(user)) { %>
                if(!editing){
                  editing=true;
                  var value=$("#data").val();
@@ -66,7 +66,7 @@
         <body>
 		  <div class= "container">
                 <div id='login'>
-                  <% if(user) { %>
+                  <% if(!isEmpty(user)) { %>
                     <h3>Welcome,<%= user %> </h3>
                   <% }else{ %>
                       <a href='#' onclick='login();'><label>Signin</label></a>
@@ -82,7 +82,7 @@
                   <% } %>
                 </div>
                 <label>Path:</label> <h4><%= path %> &nbsp;&nbsp; 
-                  <% if(user){ %>
+                  <% if(!isEmpty(user)){ %>
                   <a href='#' onclick="delete_path();">delete</a>
                   <form id='delete_form' onsubmit="return;">
                     <input type='hidden' name='path' value='<%= path %>'/>
@@ -98,15 +98,15 @@
                    </tr>
                    <% for(var p in stat){ %>
                    <tr>
-                     <td><%= p %></td>
-                     <td><%= stat[p] %> </td>
+                     <td><%= p.key %></td>
+                     <td><%= p.value %> </td>
                    </tr>
                    <%} %>
                 </table>
                 <label>Data (Click on the value to edit it) : </label>
                 <input type='hidden' value='<%= data %>' id='data' />
                 <div id='data_container' onclick='edit();'>
-				  <% if (data && data != ''){ %>
+				  <% if (!isEmpty(data)){ %>
                   <%= data %>
 				  <% } else {%>
 				     NO DATA OR EMPTY VALUE

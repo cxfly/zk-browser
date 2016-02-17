@@ -1,43 +1,34 @@
-##node-zk-browser
+## node-zk-browser
 
-A zookeeper web administrator in node.js. It's based on [express.js](http://expressjs.com/) and [node-zookeeper](https://github.com/yfinkelstein/node-zookeeper).It will display zookeeper's data as a lazy loading tree,and display every path's stat info and data;and you can create,edit or delete path if you logon.
+[node-zk-browser](https://github.com/killme2008/node-zk-browser) 的java1.8版本
 
-##Requirement
+##  Build
 
-You must install node.js 0.8.x from https://github.com/joyent/node/tags and [npm](https://github.com/isaacs/npm).
+mvn clean package -Ptar
 
-##Configure
-First,you must install dependencies with npm
+## Configure
 
-          npm install -d
+修改conf.yaml配置文件
 
-Then edit app.js to configure your zk hosts
+	port : 3000
+	zk_host : localhost:2181
+	template_dir : ./views
+	static_dir : ./public
+	users : { "admin" : "admin" }
+	debug : true
 
-          var zkclient = new ZkClient("localhost:2181");
-		  
-Or you can pass it by enviroment variable:
+## Run
 
-         export ZK_HOST="localhost:2181"
-		 
-in `start.sh`.
-
-And edit user.json to configure your administrator account:
-
-         { "name" : "password"}
-
-##Run
 Type command to start app
 
         ./start.sh
 
 You can visit node-zk now at
 
-        http://localhost:3000
+        http://localhost:9000
 
-#Lisense
+## Lisense
+
         Apache License Version 2.0
 
 See LICENSE.txt file in the top level folder.
-
-#Author
-Dennis Zhuang(killme2008@gmail.com)

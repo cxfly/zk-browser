@@ -1,0 +1,6 @@
+port : 9000
+zk_host : localhost:2181
+template_dir : E:\git\tools\node-zk-browser\views
+static_dir : file:///E:/git/tools/node-zk-browser/public
+users : { "admin" : "admin" }
+debug : true

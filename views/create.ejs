@@ -17,7 +17,7 @@
    <body>
 	 <div class= "container">
      <div id='login'>
-       <% if(user) { %>
+       <% if(!isEmpty(user)) { %>
        <h3>Welcome,<%= user %> </h3>
        <% }else{ %>
        <a href='#' onclick='login();'><label>Signin</label></a>
