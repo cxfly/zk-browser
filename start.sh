@@ -17,4 +17,4 @@ for f in $APP_HOME/lib/common/*.jar ; do
   export APP_CLASSPATH+=:$f
 done
 
-nohup ${JAVA_HOME}/bin/java $APP_OPTS -cp $APP_CLASSPATH com.github.winse.Application >>$LOGFILE 2>&1 &
+nohup ${JAVA_HOME}/bin/java $APP_OPTS -cp $APP_CLASSPATH com.github.winse.ZkBrowserServer >>$LOGFILE 2>&1 &

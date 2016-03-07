@@ -5,7 +5,7 @@
     <groupId>com.github.winse</groupId>
     <artifactId>node-zk-browser</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <name>node-zk-browser</name>
 
     <properties>

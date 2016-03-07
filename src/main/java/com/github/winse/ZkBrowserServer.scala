@@ -6,11 +6,11 @@ import spark._
 
 import scala.beans.BeanProperty
 
-object Application extends RequestHandlers with ZkClient {
+object ZkBrowserServer extends RequestHandlers with ZkClient {
 
-  import com.github.winse.Application.RouteConversions._
+  import com.github.winse.ZkBrowserServer.RouteConversions._
 
-  private val config = new Yaml().loadAs(Application.getClass.getResourceAsStream("/conf.yaml"), classOf[Config])
+  private val config = new Yaml().loadAs(ZkBrowserServer.getClass.getResourceAsStream("/conf.yaml"), classOf[Config])
 
   private lazy val templateEngine: TemplateEngine =
     new BeetlTemplateEngine().setDirectoryForTemplateLoading(config.template_dir)
