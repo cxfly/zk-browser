@@ -11,6 +11,12 @@
                     form.hide();
                 }
             }
+
+            function recursive_set(check){
+                var recursive = $(check).attr("checked");
+                $("input[name=recursive]").val(recursive);
+            }
+
              function delete_path(){
                   var path=$('#delete_form').find("input[name='path']").val();
                   var lastPartIndex=path.lastIndexOf("/");
@@ -81,12 +87,14 @@
                       </div>
                   <% } %>
                 </div>
-                <label>Path:</label> <h4><%= path %> &nbsp;&nbsp; 
+                <label>Path:</label> <h4><%= path %> &nbsp;&nbsp;
                   <% if(!isEmpty(user)){ %>
-                  <a href='#' onclick="delete_path();">delete</a>
-                  <form id='delete_form' onsubmit="return;">
+                  <a href='#' onclick="delete_path();">delete</a> &nbsp;
+                  <input type='checkbox' value='false' class="inline" onclick="recursive_set(this);" /> recursive
+                  <form id='delete_form' onsubmit="return;" >
                     <input type='hidden' name='path' value='<%= path %>'/>
                     <input type='hidden' name='version' value='<%= stat.version %>'/>
+                    <input type='hidden' name='recursive' value='false' class="inline" />
                   </form>
                 <% } %>
 				  </h4>

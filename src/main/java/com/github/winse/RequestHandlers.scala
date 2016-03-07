@@ -119,9 +119,13 @@ trait RequestHandlers {
       } else {
         val path = req.queryParams("path")
         val version = req.queryParams("version").toInt;
+        val recursive = req.queryParams("recursive").toBoolean;
 
         try {
-          zookeeper.delete().withVersion(version).forPath(path);
+          val builder = zookeeper.delete()
+          if (recursive) builder.deletingChildrenIfNeeded()
+
+          builder.withVersion(version).forPath(path);
           "Delete ok."
         } catch {
           case it: Throwable => it.getMessage
