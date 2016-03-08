@@ -12,8 +12,7 @@ object ZkBrowserServer extends RequestHandlers with ZkClient {
 
   private val config = new Yaml().loadAs(ZkBrowserServer.getClass.getResourceAsStream("/conf.yaml"), classOf[Config])
 
-  private lazy val templateEngine: TemplateEngine =
-    new BeetlTemplateEngine().setDirectoryForTemplateLoading(config.template_dir)
+  private lazy val templateEngine: TemplateEngine = new BeetlTemplateEngine(config.template_dir)
 
   def main(args: Array[String]) {
     host = config.zk_host
@@ -51,6 +50,7 @@ object ZkBrowserServer extends RequestHandlers with ZkClient {
   }
 
   case class User(name: String, passwd: String)
+
   class Config {
     @BeanProperty var port: Int = _
     @BeanProperty var zk_host: String = _

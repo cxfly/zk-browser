@@ -1,6 +1,6 @@
 port : 9000
 zk_host : localhost:2181
-template_dir : E:\winsegit\node-zk-browser\views
-static_dir : E:\winsegit\node-zk-browser\public
+template_dir : views
+static_dir : public
 users : { "admin" : "admin" }
 debug : true

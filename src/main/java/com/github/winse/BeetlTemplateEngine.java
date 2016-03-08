@@ -16,23 +16,17 @@ import java.util.Map;
 
 public class BeetlTemplateEngine extends TemplateEngine {
 
-    private ResourceLoader resourceLoader = new ClasspathResourceLoader();
     private GroupTemplate gt;
 
-    public BeetlTemplateEngine() {
+    public BeetlTemplateEngine(String directoryForTemplate) {
         try {
             Configuration cfg = Configuration.defaultConfiguration();
             cfg.setPlaceholderStart("<%=");
             cfg.setPlaceholderEnd("%>");
-            this.gt = new GroupTemplate(resourceLoader, cfg);
+            this.gt = new GroupTemplate(new FileResourceLoader(directoryForTemplate), cfg);
         } catch (IOException e) {
             throw Throwables.propagate(e);
         }
-    }
-
-    public BeetlTemplateEngine setDirectoryForTemplateLoading(String file) {
-        this.resourceLoader = new FileResourceLoader(file);
-        return this;
     }
 
     @Override

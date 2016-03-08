@@ -16,8 +16,8 @@
 
 	port : 3000
 	zk_host : localhost:2181
-	template_dir : ./views
-	static_dir : ./public
+	template_dir : views
+	static_dir : public
 	users : { "admin" : "admin" }
 	debug : true
 
