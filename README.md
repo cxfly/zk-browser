@@ -1,4 +1,4 @@
-## node-zk-browser
+## zk-browser
 
 [node-zk-browser](https://github.com/killme2008/node-zk-browser) 的java版本
 
