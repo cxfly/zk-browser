@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.winse</groupId>
-    <artifactId>node-zk-browser</artifactId>
+    <artifactId>zk-browser</artifactId>
     <packaging>jar</packaging>
     <version>1.0.1</version>
-    <name>node-zk-browser</name>
+    <name>zk-browser</name>
 
     <properties>
         <scala.version>2.11.6</scala.version>
