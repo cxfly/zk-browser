@@ -85,7 +85,7 @@ trait RequestHandlers extends ZkClient {
     (req: Request, res: Response) => {
       val hostAndPorts = host.split(",").map(hp => {
         val pair = hp.split(":")
-        (pair(0), pair(1).toInt)
+        (pair(0), if(pair.length < 2) 2181 else pair(1).toInt)
       })
 
       val cmds = Array(
