@@ -1,5 +1,7 @@
 package com.github.winse
 
+import java.util.{Map => JMap, LinkedHashMap => JLinkedHashMap}
+
 import org.apache.curator.framework.CuratorFramework
 import org.apache.zookeeper.CreateMode
 import org.apache.zookeeper.data.Stat
@@ -8,8 +10,9 @@ import spark.{ModelAndView, Request, Response}
 
 import scala.collection.JavaConversions._
 import scala.collection.immutable.ListMap
+import scala.collection.mutable
 
-trait RequestHandlers {
+trait RequestHandlers extends ZkClient {
 
   var zookeeper: CuratorFramework = _
   var host: String = _
@@ -67,13 +70,43 @@ trait RequestHandlers {
           "data" -> Json.obj(
             "title" -> child,
             "icon" -> "ou.png",
-            "attributes" -> Json.obj("href" -> ("/node-zk/get?path=" + realPath))
+            "attributes" -> Json.obj("href" -> ("/zk/get?path=" + realPath))
           ),
           "state" -> "closed"
         )
       }
 
       JsArray(result)
+    }
+
+  // @see http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html#The+Four+Letter+Words
+  // @see org.apache.zookeeper.server.ServerCnxn#cmd2String
+  def STAT =
+    (req: Request, res: Response) => {
+      val hostAndPorts = host.split(",").map(hp => {
+        val pair = hp.split(":")
+        (pair(0), pair(1).toInt)
+      })
+
+      val cmds = Array(
+        "ruok",
+        "stat",
+        "wchs",
+        "mntr",
+        "conf",
+        "dump",
+        ""
+      )
+      val map: JMap[String, JMap[String, String]] = new JLinkedHashMap[String, JMap[String, String]]
+      for (
+        (host, port) <- hostAndPorts;
+        cmd <- cmds if (!cmd.isEmpty)
+      ) {
+        val response = send4LetterWord(host, port, cmd)
+        map.getOrElseUpdate(s"$host:$port", new JLinkedHashMap[String, String]).put(cmd, response)
+      }
+
+      modelAndView(Map("stat" -> map), "stat.ejs")
     }
 
   def CREATE =

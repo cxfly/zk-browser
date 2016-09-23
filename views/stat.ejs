@@ -1,0 +1,26 @@
+<html>
+   <head><title>Zookeeper Stats</title>
+         <link href="/css/bootstrap.css" rel="stylesheet">
+         <link href="/css/bootstrap-responsive.css" rel="stylesheet">   </head>
+   <body>
+	 <div class= "container">
+     <div>
+       <% for(var p in stat){ %>
+       <label><%=p.key %> Stat:</label>
+       <table class= "table table-bordered">
+         <tr>
+           <td>Commands</td>
+           <td>Response</td>
+         </tr>
+         <% for(var r in p.value){ %>
+         <tr>
+           <td><%=r.key %> </td>
+           <td><pre><%=r.value %> </pre></td>
+         </tr>
+         <%} %>
+       <table>
+       <%} %>
+	  </container>
+     </div>
+   </body>
+</html>

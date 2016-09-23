@@ -12,7 +12,7 @@
                 async : true,
                 opts : {
                     method : "get",
-                    url : "/node-zk/children"
+                    url : "/zk/children"
                 }
             },
             ui : {
@@ -47,15 +47,17 @@
      });
      function searchnodes(){
          var searchPath=$('#search_path').val();
-         window.location.href='/node-zk/tree?path='+searchPath;
-         $(parent.document.body).find('#content').attr('src', "/node-zk/get?path="+searchPath);
+         window.location.href='/zk/tree?path='+searchPath;
+         $(parent.document.body).find('#content').attr('src', "/zk/get?path="+searchPath);
      }
 </script>
 <div id="container">
-     <h2><a target="_blank" href="https://github.com/killme2008/node-zk-browser" style='text-decoration:none;'>Node-ZK-Browser</a></h2>
-    <div><%= host %></div>
+     <h2><a target="_blank" href="https://github.com/winse/zk-browser" style='text-decoration:none;'>Zookeeper Browser</a></h2>
      <div>
-         <a href="/node-zk/create" target="content">create path</a>
+        <a href="/zk/stat" target="content"><%= host %></a>
+     </div>
+     <div>
+         <a href="/zk/create" target="content">Create Path</a>
      </div>
      <div>
          <input type="text" id="search_path" value='<%= path %>'/>

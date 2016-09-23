@@ -23,11 +23,11 @@
                   var parenPath=path.substring(0,lastPartIndex);
 
                   if(confirm("Are you sure want to delete "+path+"?")){
-                        $.post("/node-zk/delete",$('#delete_form').serialize(),function(rt){
+                        $.post("/zk/delete",$('#delete_form').serialize(),function(rt){
                             alert(rt);
                             if(rt=='Delete ok'){
-                               $(parent.document.body).find('#tree').attr('src', "/node-zk/tree?path="+parenPath);
-                               window.location.href="/node-zk/get?path="+parenPath;
+                               $(parent.document.body).find('#tree').attr('src', "/zk/tree?path="+parenPath);
+                               window.location.href="/zk/get?path="+parenPath;
                             }
                         });
                   }
@@ -50,9 +50,9 @@
                 $("#save_data").click(function(e){
                       var new_data=$("#new_data").val();
                       if(new_data!=value){
-                            $.post("/node-zk/edit",$("#edit_form").serialize(),function(data){
+                            $.post("/zk/edit",$("#edit_form").serialize(),function(data){
                                  alert(data);
-                                 window.location.href="/node-zk/get?path=<%= path %>";
+                                 window.location.href="/zk/get?path=<%= path %>";
                             });
                       }else
                             $("#data_container").html(value);
@@ -77,7 +77,7 @@
                   <% }else{ %>
                       <a href='#' onclick='login();'><label>Signin</label></a>
                       <div id='login_form' style='display:none;'>
-                         <form method="post" action="/node-zk/login">
+                         <form method="post" action="/zk/login">
 						   <label>Username</label>
                            <input type="text" name="user[name]" />
 						   <label>Password</label>

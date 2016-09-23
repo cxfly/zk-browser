@@ -27,7 +27,7 @@ Type command to start app
 
         ./start.sh
 
-You can visit node-zk now at
+You can visit zk now at
 
         http://localhost:3000
 

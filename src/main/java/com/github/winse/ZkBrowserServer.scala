@@ -26,30 +26,29 @@ object ZkBrowserServer extends RequestHandlers with ZkClient {
     externalStaticFileLocation(config.static_dir)
     port(config.port)
 
-    get("/", (req: Request, res: Response) => res.redirect("/node-zk"))
-    get("/node-zk/", (req: Request, res: Response) => modelAndView(Map(), "index.ejs"), templateEngine)
-    get("/node-zk/tree", TREE, templateEngine)
-    get("/node-zk/get", GET, templateEngine)
-    get("/node-zk/children", CHILDREN)
+    get("/", (req: Request, res: Response) => res.redirect("/zk"))
+    get("/zk/", (req: Request, res: Response) => modelAndView(Map(), "index.ejs"), templateEngine)
+    get("/zk/tree", TREE, templateEngine)
+    get("/zk/get", GET, templateEngine)
+    get("/zk/stat", STAT, templateEngine)
+    get("/zk/children", CHILDREN)
 
     get(
-      "/node-zk/create",
+      "/zk/create",
       (req: Request, res: Response) =>
         modelAndView(Map[String, Any]("layout" -> false, "user" -> req.session().attribute("user")), "create.ejs"),
       templateEngine)
-    post("/node-zk/create", CREATE)
-    post("/node-zk/edit", EDIT)
-    post("/node-zk/delete", DELETE)
+    post("/zk/create", CREATE)
+    post("/zk/edit", EDIT)
+    post("/zk/delete", DELETE)
 
-    post("/node-zk/login", LOGIN)
+    post("/zk/login", LOGIN)
   }
 
   def stop() {
     zookeeper.close()
     Spark.stop();
   }
-
-  case class User(name: String, passwd: String)
 
   class Config {
     @BeanProperty var port: Int = _

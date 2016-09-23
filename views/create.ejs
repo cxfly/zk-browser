@@ -22,7 +22,7 @@
        <% }else{ %>
        <a href='#' onclick='login();'><label>Signin</label></a>
        <div id='login_form' style='display:none;'>
-         <form method="post" action="/node-zk/login">
+         <form method="post" action="/zk/login">
 		   <label>Username</label>
            <input type="text" name="user[name]" />
 		   <label>Password</label>
@@ -34,7 +34,7 @@
      </div>
      </br>
      <div>
-      <form action="/node-zk/create" method="post">
+      <form action="/zk/create" method="post">
         <table class= "table table-bordered">
           <tr>
            <td>Path </td>
